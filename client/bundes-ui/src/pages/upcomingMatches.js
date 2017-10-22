@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Image, Grid } from 'semantic-ui-react'
+import { Label, Segment, Grid } from 'semantic-ui-react'
 import moment from 'moment';
 
 
@@ -28,48 +28,41 @@ class UpcomingMatches extends React.Component {
 
       if (match.Goals.length) {
          ({ ScoreTeam1, ScoreTeam2} = match.Goals[match.Goals.length - 1]);
+      } else if (match.MatchIsFinished) {
+          ScoreTeam1 = 0;
+          ScoreTeam2 = 0;
       }
 
-
+      const color = match.MatchIsFinished ? '' : 'green';
 
       return (
-         <Grid.Row centered key={match.MatchID}>
+         <Segment.Group  raised key={match.MatchID}>
 
-            <Grid.Column mobile={16} largeScreen={14} widescreen={12} color="blue">
+            <Segment color={color}>
                <h3 className="text-center">
                   { matchMoment.format('dddd, DD/MM/YYYY HH:MM')}
                </h3>
                <div className="text-center">
                   { match.Location.LocationStadium }
                </div>
-            </Grid.Column>
+            </Segment>
 
-            <Grid.Column mobile={8} largeScreen={7} widescreen={6}>
-               <Card fluid>
-                  <Card.Content>
-                     <Card.Header textAlign="right">
-                        {match.Team1.TeamName}
-                     </Card.Header>
-                     <Card.Meta textAlign="right">
-                        { ScoreTeam1 !== undefined ? ScoreTeam1 : '-' }
-                     </Card.Meta>
-                  </Card.Content>
-               </Card>
-            </Grid.Column>
+            <Segment.Group horizontal>
+               <Segment textAlign="right" className="half-width">
+                  <span>{match.Team1.TeamName} </span>
+                  <div>
+                     <Label circular color="grey" >{ ScoreTeam1 !== undefined ? ScoreTeam1 : '-' } </Label>
+                  </div>
+               </Segment>
 
-            <Grid.Column mobile={8} largeScreen={7} widescreen={6}>
-               <Card fluid>
-                  <Card.Content>
-                     <Card.Header>
-                        {match.Team1.TeamName}
-                     </Card.Header>
-                     <Card.Meta>
-                        { ScoreTeam2 !== undefined ? ScoreTeam2 : '-' }
-                     </Card.Meta>
-                  </Card.Content>
-               </Card>
-            </Grid.Column>
-         </Grid.Row>
+               <Segment className="half-width">
+                  {match.Team2.TeamName}
+                  <div>
+                     <Label circular color="grey">{ ScoreTeam2 !== undefined ? ScoreTeam2 : '-' }</Label>
+                  </div>
+               </Segment>
+            </Segment.Group>
+         </Segment.Group>
       )
    }
 
@@ -86,7 +79,11 @@ class UpcomingMatches extends React.Component {
                   </h1>
                </Grid.Column>
             </Grid.Row>
-            { this.state.data.map(this.renderMatch)}
+            <Grid.Row centered>
+               <Grid.Column  mobile={16} largeScreen={14} widescreen={12} >
+                  { this.state.data.map(this.renderMatch)}
+               </Grid.Column>
+            </Grid.Row>
          </Grid>
       )
    }
