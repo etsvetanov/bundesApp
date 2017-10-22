@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom';
+
 
 import { UpcomingMatches } from './pages/upcomingMatches';
 
@@ -9,7 +15,10 @@ import { UpcomingMatches } from './pages/upcomingMatches';
 class App extends Component {
   render() {
     return (
-       <UpcomingMatches/>
+        <Router>
+
+          <Route path="/upcoming" component={UpcomingMatches} />
+        </Router>
     );
   }
 }
