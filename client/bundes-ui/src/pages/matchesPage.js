@@ -2,10 +2,9 @@ import React from 'react';
 import { Dimmer, Loader } from 'semantic-ui-react';
 
 import { MatchList } from '../components/matchList';
-import { fetchCurrentMatchDay } from '../api';
 
 
-class UpcomingMatches extends React.Component {
+class MatchesPage extends React.Component {
    constructor() {
       super();
 
@@ -31,7 +30,6 @@ class UpcomingMatches extends React.Component {
             </Dimmer>
          )
       }
-      // if (!this.state.data) return <p> Loading! </p>;
 
       return (
          <MatchList matches={this.state.data}/>
@@ -40,4 +38,4 @@ class UpcomingMatches extends React.Component {
 }
 
 
-export { UpcomingMatches };
+export { MatchesPage };

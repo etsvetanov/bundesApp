@@ -10,7 +10,7 @@ import {
 } from 'react-router-dom';
 
 
-import {UpcomingMatches} from './pages/upcomingMatches';
+import {MatchesPage} from './pages/matchesPage';
 
 
 class App extends Component {
@@ -39,7 +39,7 @@ class App extends Component {
                   </Grid.Row>
                   <Grid.Row centered>
                      <Grid.Column mobile={16} largeScreen={14} widescreen={12}>
-                        <Route path="/upcoming" component={UpcomingMatches}/>
+                        <Route path="/upcoming" component={MatchesPage} test={{a:5}} />
                      </Grid.Column>
                   </Grid.Row>
                </Grid>
