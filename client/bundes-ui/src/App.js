@@ -9,8 +9,7 @@ import {
    Link
 } from 'react-router-dom';
 
-
-import {MatchesPage} from './pages/matchesPage';
+import { CurrentMatchdayPage, NextMatchdayPage } from './pages';
 
 
 class App extends Component {
@@ -19,15 +18,24 @@ class App extends Component {
          <Router>
             <div>
                <Menu stackable>
+
                   <Menu.Item>
                      <img src='http://www.camdensundayleague.com/wp-content/uploads/2016/08/Football-300x300.jpg'/>
                   </Menu.Item>
 
                   <Menu.Item
-                     name="Upcoming"
+                     name="current"
                   >
-                     <Link to="/upcoming"> Upcoming </Link>
+                     <Link to="/current"> Current </Link>
                   </Menu.Item>
+
+                  <Menu.Item
+                     name="upcoming"
+                  >
+                     <Link to="/next"> Upcoming </Link>
+                  </Menu.Item>
+
+
                </Menu>
                <Grid>
                   <Grid.Row>
@@ -39,7 +47,8 @@ class App extends Component {
                   </Grid.Row>
                   <Grid.Row centered>
                      <Grid.Column mobile={16} largeScreen={14} widescreen={12}>
-                        <Route path="/upcoming" component={MatchesPage} test={{a:5}} />
+                        <Route path="/current" render={CurrentMatchdayPage} />
+                        <Route path="/next" render={NextMatchdayPage} />
                      </Grid.Column>
                   </Grid.Row>
                </Grid>

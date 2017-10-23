@@ -14,13 +14,11 @@ class MatchesPage extends React.Component {
    }
 
    componentDidMount() {
-      fetchCurrentMatchDay()
+      this.props.fetchData()
          .then((json) => {
             this.setState({ data: json });
          });
    }
-
-
 
    render() {
       if (!this.state.data) {
