@@ -24,7 +24,7 @@ export function MatchItem({ match }) {
                { matchMoment.format('dddd, DD/MM/YYYY HH:MM')}
             </h3>
             <div className="text-center">
-               { match.Location.LocationStadium }
+               { match.Location ? match.Location.LocationStadium : "n/a" }
             </div>
          </Segment>
 

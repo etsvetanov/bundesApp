@@ -22,3 +22,12 @@ export const fetchNextMatchDay = () => {
          return response.json();
       });
 };
+
+export const fetchAllSeason = () => {
+   const currentYear = new Date().getUTCFullYear();
+
+   return fetch(`https://www.openligadb.de/api/getmatchdata/bl1/${currentYear}`)
+      .then((response) => {
+         return response.json();
+      });
+};

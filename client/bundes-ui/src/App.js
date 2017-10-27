@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { Menu, Grid } from 'semantic-ui-react';
+import { Menu, Grid, Icon } from 'semantic-ui-react';
 
 import {
    BrowserRouter as Router,
@@ -9,7 +9,7 @@ import {
    Link
 } from 'react-router-dom';
 
-import { CurrentMatchdayPage, NextMatchdayPage } from './pages';
+import { CurrentMatchdayPage, NextMatchdayPage, AStatisticsPage, SearchTeamPage } from './pages';
 
 
 class App extends Component {
@@ -35,8 +35,21 @@ class App extends Component {
                      <Link to="/next"> Upcoming </Link>
                   </Menu.Item>
 
+                  <Menu.Item
+                     name="statistics"
+                  >
+                     <Link to="/statistics"> Statistics </Link>
+                  </Menu.Item>
 
+                  <Menu.Item
+                     name="search"
+                  >
+                     <Link to="/search">
+                        <Icon name='search' size="big"/>
+                     </Link>
+                  </Menu.Item>
                </Menu>
+
                <Grid>
                   <Grid.Row>
                      <Grid.Column>
@@ -49,6 +62,8 @@ class App extends Component {
                      <Grid.Column mobile={16} largeScreen={14} widescreen={12}>
                         <Route path="/current" render={CurrentMatchdayPage} />
                         <Route path="/next" render={NextMatchdayPage} />
+                        <Route path="/statistics" render={AStatisticsPage} />
+                        <Route path="/search" component={SearchTeamPage} />
                      </Grid.Column>
                   </Grid.Row>
                </Grid>
