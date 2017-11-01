@@ -95,3 +95,14 @@ export const getWinLossRatio = createSelector(
 );
 
 export const getWinLossRatioByTeamId = (state, teamId) => getWinLossRatio(state)[teamId];
+export const getWinLossStatistics = createSelector(
+   getWinLossRatio,
+   getTeamsById,
+   (winLossRatio, teamsById) => {
+      return Object.keys(winLossRatio).map(teamId => ({
+         team: teamsById[teamId].TeamName,
+         wins: winLossRatio[teamId].wins,
+         losses: winLossRatio[teamId].losses,
+      }));
+   }
+);
