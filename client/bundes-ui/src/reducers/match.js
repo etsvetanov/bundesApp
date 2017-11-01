@@ -40,26 +40,57 @@ export const match = combineReducers({
 export const getMatchesById = (state) => state.match.byId;
 export const getMatchById = (state, id) => state.match.byId[id];
 export const getMatchesList = (state) => Object.values(state.match.byId);
+export const getCurrentMatchday = (state) => state.match.currentMatchday;
+
+export const _getNextMatchdayMatches = createSelector(
+   getCurrentMatchday,
+   getMatchesList,
+   getTeamsById,
+   (currentMatchday, matchesList) => {
+      if (currentMatchday === null) {
+         return null;
+      }
+
+      return matchesList
+         .filter(match => match.Group.GroupOrderID === currentMatchday + 1);
+   }
+);
 
 
-export const getUpcomingMatchesByTeam = createSelector(
+export const _getUpcomingMatchesByTeam = createSelector(
    getMatchesList,
    getTeamsById,
    getSelectedTeamId,
    (matchesList, teamsById, selectedTeamId) => {
       const nowJSON = new Date().toJSON();
 
-      const futureTeamMatches = matchesList
+      return matchesList
          .filter(match => match.MatchDateTime > nowJSON)
          .filter(match => [match.Team1, match.Team2].includes(selectedTeamId));
-
-      return futureTeamMatches.map(match => ({
-         ...match,
-         Team1: teamsById[match.Team1],
-         Team2: teamsById[match.Team2],
-      }));
    }
 );
+
+export const makeNormalizedMatchesSelector = (selector) => {
+   debugger;
+   return createSelector(
+      selector,
+      getTeamsById,
+      (selectorResult, teamsById) => {
+         if (selectorResult === null) {
+            return null;
+         }
+
+         return selectorResult.map(match => ({
+            ...match,
+            Team1: teamsById[match.Team1],
+            Team2: teamsById[match.Team2],
+         }));
+      }
+   );
+};
+
+export const getNextMatchdayMatches = makeNormalizedMatchesSelector(_getNextMatchdayMatches);
+export const getUpcomingMatchesByTeam = makeNormalizedMatchesSelector(_getUpcomingMatchesByTeam);
 
 
 export const getWinLossRatio = createSelector(
