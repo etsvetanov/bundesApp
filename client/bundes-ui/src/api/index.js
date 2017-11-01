@@ -1,5 +1,3 @@
-
-
 export const fetchCurrentMatchDay = () => {
    return fetch('https://www.openligadb.de/api/getmatchdata/bl1')
       .then((response) => {
@@ -23,7 +21,7 @@ export const fetchNextMatchDay = () => {
       });
 };
 
-export const fetchAllSeason = () => {
+export const fetchMatchesInCurrentSeason = () => {
    const currentYear = new Date().getUTCFullYear();
 
    return fetch(`https://www.openligadb.de/api/getmatchdata/bl1/${currentYear}`)
