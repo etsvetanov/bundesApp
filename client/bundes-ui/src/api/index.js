@@ -29,3 +29,10 @@ export const fetchMatchesInCurrentSeason = () => {
          return response.json();
       });
 };
+
+export const fetchCurrentGroup = () => {
+   return fetch('https://www.openligadb.de/api/getcurrentgroup/bl1')
+      .then((response) => {
+         return response.json();
+      })
+};

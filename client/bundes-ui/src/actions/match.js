@@ -1,7 +1,7 @@
 import { actionTypes } from './actionTypes';
 import { normalize } from 'normalizr';
 
-import { fetchMatchesInCurrentSeason } from '../api'
+import * as webApi from '../api'
 import { matchesSchema } from '../schemas';
 
 
@@ -10,7 +10,7 @@ export const fetchMatches = () => (dispatch) => {
       type: actionTypes.match.FETCH_MATCHES_REQUEST,
    });
 
-   fetchMatchesInCurrentSeason()
+   webApi.fetchMatchesInCurrentSeason()
       .then((matches) => {
          const normalizedData = normalize(matches, matchesSchema);
 
@@ -23,6 +23,16 @@ export const fetchMatches = () => (dispatch) => {
       .catch(() => {
          dispatch({
             type: actionTypes.match.FETCH_MATCHES_ERROR,
+         });
+      });
+};
+
+export const fetchCurrentGroup = () => (dispatch) => {
+   webApi.fetchCurrentGroup()
+      .then((currentGroup) => {
+         dispatch({
+            type: actionTypes.match.FETCH_CURRENT_GROUP_SUCCESS,
+            currentGroup,
          });
       });
 };
