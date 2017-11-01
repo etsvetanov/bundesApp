@@ -8,7 +8,7 @@ import {
 } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
-import { CurrentMatchdayPage, NextMatchdayPage, StatisticsPage, TeamPage } from './containers';
+import { CurrentMatchdayPage, UpcomingMatchesContainer, StatisticsPage, TeamPage } from './containers';
 import { MenuContainer } from './containers/menuContainer';
 
 
@@ -30,7 +30,7 @@ class App extends Component {
                      <Grid.Row centered>
                         <Grid.Column mobile={16} largeScreen={14} widescreen={12}>
                            <Route path="/current" render={CurrentMatchdayPage} />
-                           <Route path="/next" render={NextMatchdayPage} />
+                           <Route path="/next" component={UpcomingMatchesContainer} />
                            <Route path="/statistics" component={StatisticsPage} />
                            <Route path="/team/:id" component={TeamPage} />
                         </Grid.Column>
