@@ -70,8 +70,7 @@ export const getWinLossRatio = createSelector(
    getMatchesList,
    getInitializedTeamStats,
    (matches, initializedStatsByTeam) => {
-
-      return matches.reduce((statsByTeam, match, idx, array) => {
+      return matches.reduce((statsByTeam, match) => {
          const lastGoal = match.Goals[match.Goals.length - 1];
 
          if (!match.MatchIsFinished || !lastGoal) {
@@ -95,4 +94,4 @@ export const getWinLossRatio = createSelector(
    }
 );
 
-export const getWinLossRationByTeamId = (state, teamId) => getWinLossRatio(state)[teamId];
+export const getWinLossRatioByTeamId = (state, teamId) => getWinLossRatio(state)[teamId];
