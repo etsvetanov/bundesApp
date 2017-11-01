@@ -1,37 +1,33 @@
 import React from 'react';
-import { Dimmer, Loader } from 'semantic-ui-react';
+import { Loader } from 'semantic-ui-react';
 
 import { MatchList } from '../components/matchList';
 
 
 class MatchesPage extends React.Component {
-   constructor() {
-      super();
-
-      this.state = {
-         data: null,
-      };
-   }
-
    componentDidMount() {
-      this.props.fetchData()
-         .then((json) => {
-            this.setState({ data: json });
-         });
+      if (this.props.matches === null) {
+         this.props.fetchCurrentGroup();
+      } else if (this.props.matches.length === 0) {
+         this.props.fetchMatches();
+      }
    }
 
    render() {
-      if (!this.state.data) {
-         return (
-            <Dimmer active page>
-               <Loader> Fetching data </Loader>
-            </Dimmer>
-         )
+      if (this.props.matches === null || this.props.matches.length === 0) {
+         return <Loader active inline='centered' />
       }
 
       return (
-         <MatchList matches={this.state.data}/>
-      )
+         <div>
+            <h1 className="text-center">
+               {`${this.props.location.pathname === '/current' ? 'Current' : 'Upcoming'} matches`}
+            </h1>
+            <MatchList matches={this.props.matches} />
+         </div>
+
+
+      );
    }
 }
 

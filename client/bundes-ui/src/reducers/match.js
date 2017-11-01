@@ -42,7 +42,9 @@ export const getMatchById = (state, id) => state.match.byId[id];
 export const getMatchesList = (state) => Object.values(state.match.byId);
 export const getCurrentMatchday = (state) => state.match.currentMatchday;
 
-export const _getNextMatchdayMatches = createSelector(
+
+// offset == 0 is equivalent to current matchday
+export const makeGetMatchDayMatchesSelector = (offset=0) => createSelector(
    getCurrentMatchday,
    getMatchesList,
    getTeamsById,
@@ -52,9 +54,13 @@ export const _getNextMatchdayMatches = createSelector(
       }
 
       return matchesList
-         .filter(match => match.Group.GroupOrderID === currentMatchday + 1);
+         .filter(match => match.Group.GroupOrderID === currentMatchday + offset);
    }
 );
+
+const _getCurrentMatchdayMatches = makeGetMatchDayMatchesSelector();
+const _getNextMatchdayMatches = makeGetMatchDayMatchesSelector(1);
+
 
 
 export const _getUpcomingMatchesByTeam = createSelector(
@@ -88,6 +94,7 @@ export const makeNormalizedMatchesSelector = (selector) => {
    );
 };
 
+export const getCurrentMatchdayMatches = makeNormalizedMatchesSelector(_getCurrentMatchdayMatches);
 export const getNextMatchdayMatches = makeNormalizedMatchesSelector(_getNextMatchdayMatches);
 export const getUpcomingMatchesByTeam = makeNormalizedMatchesSelector(_getUpcomingMatchesByTeam);
 
