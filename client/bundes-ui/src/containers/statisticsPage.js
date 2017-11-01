@@ -19,28 +19,33 @@ class AllTeamsStatistics extends React.Component {
       }
 
       return(
-         <Table unstackable celled>
-            <Table.Header>
-               <Table.Row>
-                  <Table.HeaderCell>
-                     Team
-                  </Table.HeaderCell>
-                  <Table.HeaderCell>
-                     Win/Loss Ratio
-                  </Table.HeaderCell>
-               </Table.Row>
-            </Table.Header>
-            <Table.Body>
-               {this.props.statistics.map((item) => {
-                  return (
-                     <Table.Row key={item.team}>
-                        <Table.Cell> {item.team} </Table.Cell>
-                        <Table.Cell> {item.wins}:{item.losses} </Table.Cell>
-                     </Table.Row>
-                  );
-               })}
-            </Table.Body>
-         </Table>
+         <div>
+            <h1 className="text-center">
+               Win loss ratios
+            </h1>
+            <Table unstackable celled>
+               <Table.Header>
+                  <Table.Row>
+                     <Table.HeaderCell>
+                        Team
+                     </Table.HeaderCell>
+                     <Table.HeaderCell>
+                        Win/Loss Ratio
+                     </Table.HeaderCell>
+                  </Table.Row>
+               </Table.Header>
+               <Table.Body>
+                  {this.props.statistics.map((item) => {
+                     return (
+                        <Table.Row key={item.team}>
+                           <Table.Cell> {item.team} </Table.Cell>
+                           <Table.Cell> {item.wins}:{item.losses} </Table.Cell>
+                        </Table.Row>
+                     );
+                  })}
+               </Table.Body>
+            </Table>
+         </div>
       );
    }
 }

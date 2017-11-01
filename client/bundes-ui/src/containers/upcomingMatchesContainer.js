@@ -22,7 +22,14 @@ class UpcomingMatchesContainer extends React.Component {
       }
 
       return (
-         <MatchList matches={this.props.matches} />
+         <div>
+            <h1 className="text-center">
+               Upcoming matches
+            </h1>
+            <MatchList matches={this.props.matches} />
+         </div>
+
+
       );
    }
 }

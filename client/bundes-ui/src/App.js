@@ -20,13 +20,6 @@ class App extends Component {
                <div>
                   <MenuContainer/>
                   <Grid>
-                     <Grid.Row>
-                        <Grid.Column>
-                           <h1 className="text-center">
-                              Upcoming matches
-                           </h1>
-                        </Grid.Column>
-                     </Grid.Row>
                      <Grid.Row centered>
                         <Grid.Column mobile={16} largeScreen={14} widescreen={12}>
                            <Route path="/current" render={CurrentMatchdayPage} />

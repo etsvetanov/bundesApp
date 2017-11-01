@@ -27,6 +27,7 @@ export const team = combineReducers({
 // --- selectors ---
 
 export const getTeamsById = (state) => state.team.byId;
+export const getTeamById = (state, id) => getTeamsById(state)[id];
 export const getTeamsList = createSelector(
    getTeamsById,
    (teamsById) => Object.values(teamsById)

@@ -5,6 +5,7 @@ import { Loader } from 'semantic-ui-react';
 
 import { fetchMatches } from '../actions/match';
 import { getWinLossRatioByTeamId, getUpcomingMatchesByTeam } from '../reducers/match';
+import { getTeamById } from '../reducers/team';
 import { MatchList } from '../components/matchList';
 import { withRouter } from 'react-router-dom';
 
@@ -23,6 +24,9 @@ class TeamPage extends React.Component {
 
       return (
          <div>
+            <h1 className="text-center">
+               { this.props.team.TeamName }
+            </h1>
             <div className="team-statistics-container">
                <Statistic>
                   <Statistic.Label>Wins</Statistic.Label>
@@ -46,6 +50,7 @@ const mapStateToProps = (state, ownProps) => {
    return {
       winLossRatios: getWinLossRatioByTeamId(state, teamId),
       upcomingMatches: getUpcomingMatchesByTeam(state, ownProps),
+      team: getTeamById(state, teamId),
    };
 };
 
