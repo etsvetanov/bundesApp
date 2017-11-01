@@ -12,4 +12,13 @@ body {
   max-width: 50%;
 }
 
+.ui.fluid.dropdown.menu-search-input {
+  min-width: 260px;
+}
+
+.team-statistics-container {
+  display: flex;
+  justify-content: center;
+}
+
 /*TODO: remove column right padding on mobile and tablet*/
