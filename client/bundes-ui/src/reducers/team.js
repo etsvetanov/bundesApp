@@ -32,7 +32,7 @@ export const getTeamsList = createSelector(
    (teamsById) => Object.values(teamsById)
 );
 
-export const getSelectedTeamId = (state, props) => parseInt(props.match.params.id);
+export const getSelectedTeamId = (state, props) => parseInt(props.match.params.id, 10);
 
 export const getTeamOptions = createSelector(
    getTeamsList,
