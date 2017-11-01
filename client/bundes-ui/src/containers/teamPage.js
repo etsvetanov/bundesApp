@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Loader } from 'semantic-ui-react';
 
 import { fetchMatches } from '../actions/match';
-import { getWinLossRationByTeamId, getUpcomingMatchesByTeam } from '../reducers/match';
+import { getWinLossRatioByTeamId, getUpcomingMatchesByTeam } from '../reducers/match';
 import { MatchList } from '../components/matchList';
 import { withRouter } from 'react-router-dom';
 
@@ -44,7 +44,7 @@ const mapStateToProps = (state, ownProps) => {
    const teamId = ownProps.match.params.id;
 
    return {
-      winLossRatios: getWinLossRationByTeamId(state, teamId),
+      winLossRatios: getWinLossRatioByTeamId(state, teamId),
       upcomingMatches: getUpcomingMatchesByTeam(state, ownProps),
    };
 };
