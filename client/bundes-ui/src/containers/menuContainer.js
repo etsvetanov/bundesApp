@@ -21,20 +21,26 @@ class BundesMenu extends React.Component {
             </Menu.Item>
             <Menu.Item
                name="current"
+               onClick={() => this.props.history.push('/current')}
+               active={this.props.location.pathname === '/current'}
             >
-               <Link to="/current"> Current </Link>
+               Current
             </Menu.Item>
 
             <Menu.Item
                name="upcoming"
+               onClick={() => this.props.history.push('/next')}
+               active={this.props.location.pathname === '/next'}
             >
-               <Link to="/next"> Upcoming </Link>
+               Next
             </Menu.Item>
 
             <Menu.Item
                name="statistics"
+               onClick={() => this.props.history.push('/statistics')}
+               active={this.props.location.pathname === '/statistics'}
             >
-               <Link to="/statistics"> Statistics </Link>
+               Statistics
             </Menu.Item>
 
             <Menu.Item
@@ -65,4 +71,4 @@ const mapDispatchToProps = {
     fetchMatches,
 };
 
-export const MenuContainer = connect(mapStateToProps, mapDispatchToProps)(withRouter(BundesMenu));
+export const MenuContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(BundesMenu));

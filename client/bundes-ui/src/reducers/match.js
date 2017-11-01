@@ -71,7 +71,6 @@ export const _getUpcomingMatchesByTeam = createSelector(
 );
 
 export const makeNormalizedMatchesSelector = (selector) => {
-   debugger;
    return createSelector(
       selector,
       getTeamsById,
