@@ -28,11 +28,19 @@ class BundesMenu extends React.Component {
             </Menu.Item>
 
             <Menu.Item
-               name="upcoming"
+               name="next"
                onClick={() => this.props.history.push('/next')}
                active={this.props.location.pathname === '/next'}
             >
                Next
+            </Menu.Item>
+
+            <Menu.Item
+               name="all"
+               onClick={() => this.props.history.push('/all')}
+               active={this.props.location.pathname === '/all'}
+            >
+               All
             </Menu.Item>
 
             <Menu.Item
