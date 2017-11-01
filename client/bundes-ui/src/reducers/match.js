@@ -19,14 +19,10 @@ export const byId = (state = {}, action) => {
    }
 };
 
-export const isLoading = (state = true, action) => {
+export const currentMatchday = (state = null, action) => {
    switch (action.type) {
-      case actionTypes.match.FETCH_MATCHES_ERROR:
-      case actionTypes.match.FETCH_MATCHES_SUCCESS:
-         return false;
-
-      case actionTypes.match.FETCH_MATCHES_REQUEST:
-         return true;
+      case actionTypes.match.FETCH_CURRENT_GROUP_SUCCESS:
+         return action.currentGroup.GroupOrderID;
 
       default:
          return state;
@@ -35,7 +31,7 @@ export const isLoading = (state = true, action) => {
 
 export const match = combineReducers({
    byId,
-   isLoading,
+   currentMatchday,
 });
 
 
