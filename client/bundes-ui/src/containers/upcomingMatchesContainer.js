@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Loader } from 'semantic-ui-react'
 
 import { MatchList } from '../components/matchList';
 import { getNextMatchdayMatches } from '../reducers/match';
@@ -17,7 +18,7 @@ class UpcomingMatchesContainer extends React.Component {
 
    render() {
       if (this.props.matches === null || this.props.matches.length === 0) {
-         return <h1> LOADING </h1>;
+         return <Loader active inline='centered' />
       }
 
       return (
