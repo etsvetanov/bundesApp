@@ -8,6 +8,7 @@ import { MatchesPage } from './matchesPage'
 const mapStateToProps = (state) => {
    return {
       matches: getCurrentMatchdayMatches(state),
+      header: 'Current matchday',
    };
 };
 

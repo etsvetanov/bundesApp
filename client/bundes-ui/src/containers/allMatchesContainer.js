@@ -7,6 +7,7 @@ import {MatchesPage} from "./matchesPage";
 const mapStateToProps = (state) => {
     return {
        matches: getMatchesList(state),
+       header: 'All matches',
     };
 };
 

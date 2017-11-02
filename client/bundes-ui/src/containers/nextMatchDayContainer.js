@@ -1,4 +1,3 @@
-import React from 'react';
 import { connect } from 'react-redux';
 
 import { getNextMatchdayMatches } from '../reducers/match';
@@ -9,6 +8,7 @@ import { MatchesPage } from './matchesPage'
 const mapStateToProps = (state) => {
    return {
       matches: getNextMatchdayMatches(state),
+      header: 'Next matchday',
    };
 };
 

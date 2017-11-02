@@ -21,7 +21,7 @@ class MatchesPage extends React.Component {
       return (
          <div>
             <h1 className="text-center">
-               {`${this.props.location.pathname === '/current' ? 'Current' : 'Upcoming'} matches`}
+               {this.props.header}
             </h1>
             <MatchList matches={this.props.matches} />
          </div>
